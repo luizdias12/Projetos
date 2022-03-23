@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var ip = require('ip');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -32,12 +33,12 @@ app.use('/about', aboutRouter);
 app.use('/application', applicationRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use( (req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use( (err, req, res, next) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -45,6 +46,11 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.listen( () => {
+  console.log('Server Running!');  
+  console.log('Local IP: ' + ip.address());
 });
 
 module.exports = app;
