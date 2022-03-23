@@ -5,9 +5,13 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet' href='./css/bootstrap.min.css') 
   body
-    nav(class="navbar navbar-expand-lg navbar-dark bg-secondary")
+    nav(class="navbar navbar-expand-lg navbar-dark bg-secondary text-white")
       div(class="navbar-collapse collapse order-2")
        h4(class="mx-auto") #{title}
-    div(class="list-group")
-     a(href="/about" class="list-group-item list-group-item-action") About
+    div(class="container list-group list-group-horizontal my-2")
+     a(href="/" class="list-group-item list-group-item-action list-group-item-success text-center") Home
+     a(href="/application" class="list-group-item list-group-item-action list-group-item-primary text-center") Application
+     a(href="/req" class="list-group-item list-group-item-action list-group-item-warning text-center") Reqs
+     a(href="/about" class="list-group-item list-group-item-action list-group-item-danger text-center") About
+     
     block content
