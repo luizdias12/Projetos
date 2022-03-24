@@ -12,6 +12,12 @@ var applicationRouter = require('./routes/application');
 
 var app = express();
 
+//IP
+app.use( (req, res, next) => {
+  res.locals.ip = ip.address();
+  next();
+});
+
 //Bootstrap e Jquery
 app.use('/css',express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 app.use('/js',express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
@@ -52,5 +58,6 @@ app.listen( () => {
   console.log('Server Running!');  
   console.log('Local IP: ' + ip.address());
 });
+
 
 module.exports = app;
