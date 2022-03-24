@@ -1,13 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET application page. */
 router.get('/', (req, res, next) => {
-  console.log('HomePage - ' + new Date());
-  res.render('index', { 
-    title: 'Home',
-    nome: 'Luiz Dias da Silva da Junior',
-    matricula: '310272'
+  res.render('ndex', {
+    title: 'Welcome',
   });
 });
 

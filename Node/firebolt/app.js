@@ -6,6 +6,7 @@ var logger = require('morgan');
 var ip = require('ip');
 
 var indexRouter = require('./routes/index');
+var homeRouter = require('./routes/home');
 var usersRouter = require('./routes/users');
 var aboutRouter = require('./routes/about');
 var applicationRouter = require('./routes/application');
@@ -34,6 +35,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/home', homeRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/application', applicationRouter);

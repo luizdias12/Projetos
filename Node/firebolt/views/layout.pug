@@ -5,6 +5,7 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet' href='./css/bootstrap.min.css') 
   body
+   div.homeView
     nav(class="navbar navbar-expand-lg navbar-dark bg-secondary text-white rounded shadow")
      div(class="navbar-collapse collapse order-2")
        h4(class="mx-auto") #{title}
@@ -12,7 +13,7 @@ html
        h4(class="mx-auto") Local IP: #{ip}
     div(class="container list-group list-group-horizontal my-4")
 
-     a(href="/" class=(title === 'Home' ? "list-group-item list-group-item-action list-group-item-success text-center active" : "list-group-item list-group-item-action list-group-item-success text-center")) Home
+     a(href="/home" class=(title === 'Home' ? "list-group-item list-group-item-action list-group-item-success text-center active" : "list-group-item list-group-item-action list-group-item-success text-center")) Home
      a(href="/application" class=(title === 'Application' ? "list-group-item list-group-item-action list-group-item-primary text-center active" : "list-group-item list-group-item-action list-group-item-primary text-center")) Application
      a(href="/req" class=(title === 'Reqs' ? "list-group-item list-group-item-action list-group-item-warning text-center active" : "list-group-item list-group-item-action list-group-item-warning text-center")) Database
      a(href="/about" class=(title === 'About' ? "list-group-item list-group-item-action list-group-item-danger text-center active" : "list-group-item list-group-item-action list-group-item-danger text-center")) About
@@ -21,4 +22,4 @@ html
 
     block foot
 
-     div(class="container text-center mb-2 mt-4 sticky-bottom border border-secondary rounded bg-secondary w-25 shadow text-white") New Development 
+     div(class="container text-center mb-2 mt-4 sticky-bottom border border-secondary rounded bg-secondary w-25 shadow text-white") New Development
