@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET application page. */
 router.get('/', (req, res, next) => {
   res.render('index', {
-    title: 'Welcome',
+    title: 'Home',
     user: undefined
   });
 });
