@@ -2,20 +2,15 @@ const oracledb = require('oracledb');
 require('dotenv').config();
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
-const db_string = process.env.DATABASE_STRING;
-const db_pwd = process.env.DATABASE_PWD;
-
-console.log('db_string: ' + db_string, 'db_pwd: ' + db_pwd);
-
 async function connect() {
     
     let conn;
 
     try {
         conn = await oracledb.getConnection( {
-            user : "ville5",
-            password : `${db_pwd}`,
-            connectString : `${db_string}`
+            user : `${process.env.DB_USR}`,
+            password : `${process.env.DB_PWD}`,
+            connectString : `${process.env.DB_CONN}`
         });
 
         console.log('Connected to Database, Oracle Client Version: ' + oracledb.oracleClientVersionString);
