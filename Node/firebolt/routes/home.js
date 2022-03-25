@@ -7,7 +7,8 @@ router.get('/', (req, res, next) => {
   res.render('home', { 
     title: 'Home',
     nome: 'Luiz Dias da Silva da Junior',
-    matricula: '310272'
+    matricula: '310272',
+    user: 'Luiz'
   });
 });
 
