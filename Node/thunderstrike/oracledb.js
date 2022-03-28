@@ -22,7 +22,7 @@ async function connect() {
                 try {
                     await conn.close();
                     console.log('Connection Closed! Bye Bye!')
-                } catch(err) {
+                } catch (err) {
                     console.error(err);
             }
         }

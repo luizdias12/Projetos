@@ -2,6 +2,8 @@ const http = require('http');
 const express = require('express');
 const morgan = require('morgan');
 const webServerConfig = require('../config/web-server.js');
+const database = require('./database.js');
+const router = require('./router.js');
 
 let httpServer;
 
@@ -12,9 +14,20 @@ function initialize() {
 
     app.use(morgan('combined'));
 
-    app.get('/', (req, res) => {
-      res.end('Hello World!');
-    });
+    // app.get('/', (req, res) => {
+    //   res.end('Hello World!');
+    // });
+
+    // app.get('/', async (req, res) => {
+    //   const result = await database.simpleExecute('select user, systimestamp from dual');
+    //   const user = result.rows[0].USER;
+    //   const date = result.rows[0].SYSTIMESTAMP;
+
+    //   res.end(`DB user: ${user}\nDate: ${date}`);
+    // });
+
+    // Mount the router at /api so all routes start with /api
+    app.use('/api', router);
 
     httpServer.listen(webServerConfig.port, err => {
       if (err) {
@@ -45,46 +58,3 @@ function close() {
 }
   
 module.exports.close = close;
-
-async function shutdown(e) {
-  let err = e;
-   
-  console.log('Shutting down');
-
-  try {
-    console.log('Closing web server module');
-
-    await httpServer.close();
-  } catch (e) {
-    console.log('Encountered error', e);
-
-    err = err || e;
-  }
-
-  console.log('Exiting process');
-
-  if (err) {
-    process.exit(1); // Non-zero failure code
-  } else {
-    process.exit(0);
-  }
-}
-
-process.on('SIGTERM', () => {
-  console.log('Received SIGTERM');
-
-  shutdown();
-});
-
-process.on('SIGINT', () => {
-  console.log('Received SIGINT');
-
-  shutdown();
-});
-
-process.on('uncaughtException', err => {
-  console.log('Uncaught exception');
-  console.error(err);
-
-  shutdown(err);
-});
