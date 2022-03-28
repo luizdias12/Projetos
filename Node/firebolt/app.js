@@ -4,16 +4,27 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ip = require('ip');
+var mysql = require('mysql');
+require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var aboutRouter = require('./routes/about');
 var applicationRouter = require('./routes/application');
+var dbRouter = require('./routes/db');
 
 var app = express();
 
+//DB
+var connection = mysql.createConnection({
+  host : `${process.env.MYSQL_CONN}`,
+  user : `${process.env.MYSQL_USR}`,
+  password : `${process.env.MYSQL_PWD}`,
+  database : `${process.env.MYSQL_DB}`
+});
+
 //IP
-app.use( (req, res, next) => {
+app.use( (res, next) => {
   res.locals.ip = ip.address();
   next();
 });
@@ -38,6 +49,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/application', applicationRouter);
+app.use('/db', dbRouter);
 
 // catch 404 and forward to error handler
 app.use( (req, res, next) => {
@@ -59,6 +71,5 @@ app.listen( () => {
   console.log('Server Running!');  
   console.log('Local IP: ' + ip.address());
 });
-
 
 module.exports = app;

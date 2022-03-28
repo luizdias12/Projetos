@@ -3,7 +3,7 @@ extends layout
 block content
  div(class="card mx-auto mt-4" style="width: 25rem;")
   article(class="card-body shadow")
-   h4(class="card-title text-center mb-4 mt-1") Login
+   h4(class="card-title text-center mb-4 mt-1") #{title}
    hr       
    form(id="frm-login" action="/auth" method="post")
    div.form-group.my-2
@@ -22,7 +22,7 @@ block content
     div(class="d-grid gap-2 my-2")
      button(type="submit" class="btn btn-primary btn-block mx-auto")
       i(class="bi bi-arrow-return-right")
-      |  Acessar  
+      |  Login  
    // p.text-center
      a(href="#" class="text-danger") Esqueci a Senha!
     p.text-center

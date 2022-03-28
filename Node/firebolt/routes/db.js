@@ -3,8 +3,8 @@ var router = express.Router();
 
 /* GET application page. */
 router.get('/', (req, res, next) => {
-  res.render('application', {
-    title: 'Application'
+  res.render('db', {
+    title: 'Database'
   });
 });
 
