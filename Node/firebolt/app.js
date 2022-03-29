@@ -24,7 +24,7 @@ var connection = mysql.createConnection({
 });
 
 //IP
-app.use( (res, next) => {
+app.use( (req, res, next) => {
   res.locals.ip = ip.address();
   next();
 });
