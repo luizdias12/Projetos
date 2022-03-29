@@ -12,6 +12,7 @@ var usersRouter = require('./routes/users');
 var aboutRouter = require('./routes/about');
 var applicationRouter = require('./routes/application');
 var dbRouter = require('./routes/db');
+var authRouter = require('./routes/auth');
 
 var app = express();
 
@@ -24,7 +25,7 @@ var connection = mysql.createConnection({
 });
 
 //IP
-app.use( (res, next) => {
+app.use( (req, res, next) => {
   res.locals.ip = ip.address();
   next();
 });
@@ -50,6 +51,7 @@ app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/application', applicationRouter);
 app.use('/db', dbRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use( (req, res, next) => {
