@@ -10,7 +10,6 @@ router.post('/', (req, res, next) => {
 
     } else {    
         res.redirect('/application');
-       
     }
 
 });
