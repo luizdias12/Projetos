@@ -9,8 +9,8 @@ router.post('/', (req, res, next) => {
     if( username && password ) {
 
     } else {    
-        // res.redirect('/application');
-        console.log(criaAlert('danger', true, "fa-solid fa-triangle-exclamation", 'teste'));    
+        res.redirect('/application');
+       
     }
 
 });
