@@ -1,5 +1,5 @@
-import { Router } from 'express';
-var router = Router();
+var express = require('express');
+var router = express.Router();
 
 /* GET application page. */
 router.get('/', (req, res, next) => {
@@ -8,4 +8,4 @@ router.get('/', (req, res, next) => {
     });
 });
 
-export default router;
+module.exports = router;

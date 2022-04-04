@@ -34,7 +34,9 @@ form.submit(function(e) {
 
 socket.on('chat message', function(msg) {
     var sysdate = new Date();
-    messages.append("<li class='list-group-item'>" + sysDate() + " : " + "<b>" + msg + "</b></li>");
+    var name = $('#nome').val().toUpperCase();
+    var ipaddr = $('#ip').val();
+    messages.append("<li class='list-group-item'>[" + ipaddr + "] [" + sysDate() + "]  <<b>" + name + "</b>>  " + msg + "</li>");
     window.scrollTo(0, document.body.scrollHeight);
 });
 

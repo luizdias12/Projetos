@@ -2,11 +2,12 @@ extends layout
 
 block content
     div
-        h4#nome
+        input(type="hidden" id="nome" value=`${name}`)
+        input(type="hidden" id="ip" value=`${ipaddr}`)
         ul(id="messages" class="list-group")
-        form(action="" id="form")
+        form(id="form")
             input(type="text" id="input" autocomplete="off")
-            button(type="submit" id="send')
+            button
                 | Enviar
             button#clear
                 | Limpar

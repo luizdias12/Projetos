@@ -10,14 +10,15 @@ const bodyParser = require('body-parser')
 const port = 3000
 
 var authRouther = require('./routes/auth');
-var indexRouter = require('./routes/home').default;
-var chatRouter = require('./routes/chat').default;
+var indexRouter = require('./routes/home');
+var chatRouter = require('./routes/chat');
 
 // app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/css', express.static(path.join(__dirname, 'public/css')));
 app.use('/bs', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, 'public/js')));
+app.use('/io', express.static(path.join(__dirname, 'node_modules/socket.io/client-dist')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,3 +43,5 @@ io.on('connection', (socket) => {
 server.listen(port, () => {
     console.log(`Example app listening on port ${port}!`)
 });
+
+module.exports = app;
