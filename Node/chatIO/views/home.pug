@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    div(class="card mx-auto my-4" style="width: 25rem;")
+        article(class="card-body shadow")
+            h4(class="card-title text-center mb-4 mt-1") #{title}
+            hr
+            form(id="frm-login" action="/auth" method="post")
+                div(class="form-group my-2")
+                    div(class="input-group my-2")
+                        span(class="input-group-text")
+                            i(class="fa fa-user")
+                        input(name="username" id="user" class="form-control" placeholder="Usuario" type="text")
+                    div(class="input-group my-2")
+                        span(class="input-group-text")
+                            i(class="fa fa-lock")
+                        input(name="username" id="user" class="form-control" placeholder="Usuario" type="text")
+                        span(class="input-group-text")
+                            a(href="#" class="text-dark" id="show")
+                                i(id="eye" class="fas fa-eye")
+                div(class="form-group my-2")
+                    div(class="d-grid gap-2 my-2")
+                        button(type="submit" class="btn btn-primary btn-block" id="btn-login")
+                            |Entrar  
+                            i(class="fas fa-sign-in-alt right")

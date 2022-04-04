@@ -1,0 +1,15 @@
+doctype html
+html
+    head
+        title #{title} | Chat Socket.IO |
+        link(rel='stylesheet' href='/css/main.css')
+        link(rel='stylesheet' href='./bs/bootstrap.min.css')
+        block scripts
+            script(src="https://kit.fontawesome.com/2434c0369c.js" crossorigin="anonymous")
+            script(src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous")
+            script(type="text/javascript" src='/js/script.js')
+            script(type="text/javascript" src='/socket.io/socket.io.js')
+    body
+        block content
+
+        block foot

@@ -18,23 +18,23 @@ var app = express();
 
 //DB
 var connection = mysql.createConnection({
-  host : `${process.env.MYSQL_CONN}`,
-  user : `${process.env.MYSQL_USR}`,
-  password : `${process.env.MYSQL_PWD}`,
-  database : `${process.env.MYSQL_DB}`
+    host: `${process.env.MYSQL_CONN}`,
+    user: `${process.env.MYSQL_USR}`,
+    password: `${process.env.MYSQL_PWD}`,
+    database: `${process.env.MYSQL_DB}`
 });
 
 //IP
-app.use( (req, res, next) => {
-  res.locals.ip = ip.address();
-  next();
+app.use((req, res, next) => {
+    res.locals.ip = ip.address();
+    next();
 });
 
 //Bootstrap e Jquery
-app.use('/css',express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
-app.use('/bi',express.static(path.join(__dirname, 'node_modules/bootstrap-icons')));
-app.use('/js',express.static(path.join(__dirname, 'node_modules/jquery/dist')));
-app.use('/bootjs',express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
+app.use('/bi', express.static(path.join(__dirname, 'node_modules/bootstrap-icons')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
+app.use('/bootjs', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js')));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -54,24 +54,24 @@ app.use('/db', dbRouter);
 app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
-app.use( (req, res, next) => {
-  next(createError(404));
+app.use((req, res, next) => {
+    next(createError(404));
 });
 
 // error handler
-app.use( (err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use((err, req, res, next) => {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
-app.listen( () => {
-  console.log('Server Running!');  
-  console.log('Local IP: ' + ip.address());
+app.listen(() => {
+    console.log('Server Running!');
+    console.log('Local IP: ' + ip.address());
 });
 
 module.exports = app;

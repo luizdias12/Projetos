@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    div
+        h4#nome
+        ul(id="messages" class="list-group")
+        form(action="" id="form")
+            input(type="text" id="input" autocomplete="off")
+            button(type="submit" id="send')
+                | Enviar
+            button#clear
+                | Limpar
