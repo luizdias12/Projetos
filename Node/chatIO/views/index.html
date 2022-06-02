@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="bs/bootstrap.min.css">
+    <title> | Chat Socket.IO | </title>
+</head>
+<body>
+
+    <div class="card mx-auto my-4" style="width: 25rem;">
+        <article class="card-body shadow">
+            <h4 class="card-title text-center mb-4 mt-1">Chat</h4>
+            <hr>
+            <!-- <img src="./images/logo.png" alt="..." class="rounded mx-auto d-block"> -->
+            <hr>
+            <form id="frm-login" action="/auth" method="post">
+            <div class="form-group my-2">
+            <div class="input-group">
+                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                <input name="username" id="user" class="form-control" placeholder="Usuario" type="text">
+            </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group my-2">
+            <div class="input-group">
+                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                <input name="pass_login" id="pass" class="form-control" placeholder="******" type="password">
+                <span class="input-group-text"><a href="#" class="text-dark" id="show"><i id="eye" class="fas fa-eye"></i></a></span>
+            </div> <!-- input-group.// -->
+            </div> <!-- form-group// -->
+            <div class="form-group my-2">
+                <div class="d-grid gap-2 my-2">
+                    <button type="submit" class="btn btn-primary btn-block" id="btn-login"> Entrar 
+                        <i class="fas fa-sign-in-alt right"></i>
+                    </button>
+                </div>
+            </div> <!-- form-group// -->
+            </form>
+        </article>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/2434c0369c.js" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/script.js"></script>
+</body>
+</html>
