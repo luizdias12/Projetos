@@ -4,7 +4,10 @@ const h1 = $('#page-title');
 const body = $('#body');
 const footer = $('#footer');
 
-button.click(() => changeMode());
+button.click((e) => {
+    e.preventDefault();
+    changeMode();
+});
 
 changeMode = () => {
     changeClasses();
