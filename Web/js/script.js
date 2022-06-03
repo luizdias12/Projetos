@@ -21,7 +21,7 @@ changeClasses = () => {
     footer.toggleClass(darkModeClass);
 }
 
- changeText = () => {
+changeText = () => {
     const lightMode = 'Light Mode';
     const darkMode = 'Dark Mode';
 
