@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@dashboardcode/bsmultiselect@1.1.18/dist/css/BsMultiSelect.min.css">
-    <link rel="stylesheet" type="text/css" href="css/styles/genchar.css">
+    <link rel="stylesheet" type="text/css" href="css/genchar.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -18,15 +18,30 @@
 <body>
     <div class="container my-5 p-3 rounded" id="main">
         <div class="row my-4">
-            <div class="col">
-                <select class="form-select w-25" id="gender">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+            <div class="col d-flex justify-content-center">
+                <select class="form-select w-50" id="race">
+                    <option value="0">Raça</option>
+                    <option value="dwarf">Anão</option>
+                    <option value="dragonborn">Draconato</option>
+                    <option value="elf">Elfo</option>
+                    <option value="gnome">Gnomo</option>
+                    <option value="halfling">Halfling</option>
+                    <option value="human">Humano</option>
+                    <option value="halfelf">Meio-Elfo</option>
+                    <option value="halforc">Meio-Orc</option>
+                    <option value="tiefling">Tiefling</option>
+                </select>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <select class="form-select w-50" id="gender" disabled>
+                    <option value="0">Genero</option>
+                    <option value="male">Homem</option>
+                    <option value="female">Mulher</option>
                 </select>
             </div>
         </div>
         <div class="row my-4">
-            <div class="col">
+            <div class="col d-flex justify-content-center">
                 <button type="button" class="btn btn-secondary" id="btnGera">Gerar</button>
             </div>
         </div>
@@ -34,30 +49,57 @@
 
     <div class="container my-4" id="person"></div>
 
-    <script src="javascript/genchar.js"></script>
+    <script src="js/genchar.js"></script>
     <script>
         $("#btnGera").click(function(){
             $("#person").html("")
+            $("#person").css("color", "#FFF")
 
             let gen = genRdn()
             let result = gen.next().value
 
             let gender = $("#gender").val()
-            let person = Person.createAnonymous(gender)
-            let h2 = "<hr><h2>Name: " + person.name + "</h2>"
-            let h4 = "<h4>Age: " + person.age + "</h4>"
-            let pass = "<h5>ID: " + result + "</h5>"
+            let race = $("#race").val()
+            let person = Person.createAnonymous(race, gender)
 
-            $("#person").append(h2 + h4 + pass)
+            let html =
+            "<div class='row my-4'>" +
+                "<div class='col'>" +
+                    "<span class='h4'>Nome: </span><span> "+person.name+"</span>" +
+                "</div>" +
+                "<div class='col'>" +
+                    "<span class='h4'>Raça: </span><span> "+person.race+"</span>" +
+                "</div>" +
+                "<div class='col'>" +
+                    "<span class='h4'>Classe: </span><span> "+person.classN+"</span>" +
+                "</div>" +
+            "</div>" +
+            "<div class='row my-4'>" +
+            "</div>";
+
+            $("#person").append("<hr>")
+            $("#person").append(html)
+
         });
 
-        setInterval(() => {
-            $("#main").css({
-                "background-image": "linear-gradient(to top right, "+rdmColor()+", "+rdmColor()+", "+rdmColor()+", "+rdmColor()+", "+rdmColor()+", "+rdmColor()+")",
-                "box-shadow": "1px 1px 30px "+rdmColor()+"",
-                "transition": "2s"
-            });
-        }, 2000);
+        $("#race").change(function(){
+            if($(this).val() != 0){
+                $("#gender").attr("disabled", false);
+            } else {
+                $("#gender").attr("disabled", true);
+            }
+        });
+
+        $("#gender")
+
+        // setInterval( () => {
+        //     $("#btnGera").css({
+        //         "background-image": "linear-gradient(to top right, "+rdmColor()+", "+rdmColor()+", "+rdmColor()+", "+rdmColor()+", "+rdmColor()+", "+rdmColor()+")",
+        //         "box-shadow": "1px 1px 30px "+rdmColor()+"",
+        //         "transition": "2s"
+        //     })
+        // }, 1000);
+
     </script>
 </body>
 </html>

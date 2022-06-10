@@ -1,4 +1,9 @@
 const races = ["Humano", "Anão", "Elfo", "Meio-Elfo", "Tiefling", "Halfling", "Draconato", "Meio-Orc", "Gnomo"];
+const objRace = {
+"elf": "Elfo",
+"human": "Humano",
+"dwarf": "Anão",
+};
 const classes = ["Bárbaro", "Bardo", "Bruxo", "Clérigo", "Druida", "Feiticeiro", "Guerreiro", "Ladino", "Mago", "Monge", "Paladino", "Ranger"];
 
 class Person {
@@ -15,9 +20,11 @@ class Person {
         }
         this.name = newName
     }
-    static createAnonymous(gender) {
-        let name = gender == "male" ? genName("male") : genName("female")
+    static createAnonymous(race, gender) {
+        let name = genName(race, gender)
         let anonymous = new Person(name)
+        anonymous.setRace(race)
+        anonymous.setClass(genClass())
         return anonymous
     }
     getClass() {
@@ -30,7 +37,7 @@ class Person {
         return this.race
     }
     setRace(race) {
-        this.race = race
+        this.race = objRace[race]
     }
 }
 
@@ -52,15 +59,15 @@ let nomeHumanoM;
 let nomeHumanoF;
 let sobrenomeHumano;
 
-if(race == "Anão"){
-    name = gender == "male" ? getRdm(nomeAnaoM) : getRdm(nomeAnaoF);
+if(race == "dwarf"){
+    nameP = gender == "male" ? getRdm(nomeAnaoM) : getRdm(nomeAnaoF);
     surname = getRdm(sobrenomeAnao);
-    return name + " " + surname;
+    return nameP + " " + surname;
 }
-if(race == "Elfo"){
-    name = gender == "male" ? getRdm(nomeElfoM) : getRdm(nomeElfoF);
+if(race == "elf"){
+    nameP = gender == "male" ? getRdm(nomeElfoM) : getRdm(nomeElfoF);
     surname = getRdm(sobrenomeElfo);
-    return name + " " + surname;
+    return nameP + " " + surname;
 }
 }
 
