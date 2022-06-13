@@ -100,6 +100,21 @@
         //     })
         // }, 1000);
 
+        setInterval( () => {
+            $("#btnGera").css({
+                "box-shadow": "inset 2px 2px 30px "+rdmColor()+"",
+                "transition": "1s"
+            })
+            $("#gender").css({
+                "box-shadow": "inset 2px 2px 30px "+rdmColor()+"",
+                "transition": "1s"
+            })
+            $("#race").css({
+                "box-shadow": "inset 2px 2px 30px "+rdmColor()+"",
+                "transition": "1s"
+            })
+        }, 1000);
+
     </script>
 </body>
 </html>
