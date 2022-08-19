@@ -20,16 +20,54 @@
 </head>
     <body>
 
-<?php
+    <?php
+        session_start();
 
-session_start();
+        $app = $_GET['app'];
+        var_dump($_SESSION);
 
-$app = $_GET['app'];
+    ?>
 
-if(!file_exists(realpath(__DIR__)."/app/".$app.".php") && $app ){
-    include("error/error.php");
-} else {
-    include("app/" . $app . ".php");
-}
+    <div class="container my-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container my-2 p-2">
+            <a class="navbar-brand" href="#!"><?php echo strtoupper($app)?></a>
+            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" id="ddBtn" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Areas de Acesso
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="ddBtn">
+                                <?php
+                                    $array = scandir(__DIR__ . '/app');
+                                    for($i=2; $i<count($array); $i++){
+                                        $filename = explode('.',$array[$i])[0];
+                                        echo $app == $filename ? "<li><a class='dropdown-item active' href='index.php?app=" . $filename . "'>" . $filename . "</a></li>" : "<li><a class='dropdown-item' href='index.php?app=" . $filename . "'>" . $filename . "</a></li>";
+                                    }
+                                    if(isset($_SESSION['loginOK'])){
+                                        echo "<li><hr class='dropdown-divider'></li>
+                                        <li><a class='dropdown-item' href='index.php?app=logoff'>Sair</a></li>";
+                                    }
+                                ?>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-?>
+    <?php
+
+        require_once "./functions/function.php";
+
+        if(!file_exists(realpath(__DIR__)."/app/".$app.".php") && isset($app) ){
+            include("error/error.php");
+        } else {
+            include("app/" . $app . ".php");
+            validaSessao($app);
+        }
+
+    ?>
