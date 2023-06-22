@@ -1,16 +1,20 @@
 {
-  "name": "chat.io",
+  "name": "webchat",
   "version": "1.0.0",
-  "description": "",
+  "description": "New Chat based on Socket.IO Project",
   "main": "index.js",
   "scripts": {
     "test": "",
     "start": "nodemon index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Luiz Dias",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.17.3",
     "express-generator": "^4.16.1"
-  }
+  },
+  "keywords": [
+    "chat",
+    "socket.io"
+  ]
 }

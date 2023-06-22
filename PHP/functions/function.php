@@ -2,7 +2,7 @@
 
 function validaSessao($app){
     if(!isset($_SESSION['loginOK']) && $app != 'login') {
-        // header("Location: index.php?app=login");
+        header("Location: index.php?app=login");
         httpMsg(403, 'fas fa-ban');
     } else if(isset($_SESSION['loginOK']) && $app != 'login') {
         httpMsg(200, 'fas fa-circle-check');

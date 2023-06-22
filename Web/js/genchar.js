@@ -1,9 +1,29 @@
 const races = ["Humano", "Anão", "Elfo", "Meio-Elfo", "Tiefling", "Halfling", "Draconato", "Meio-Orc", "Gnomo"];
+
 const objRace = {
-"elf": "Elfo",
-"human": "Humano",
-"dwarf": "Anão",
+    "elf": "Elfo",
+    "human": "Humano",
+    "dwarf": "Anão",
+    "dragonborn": "Draconato",
+    "halfelf": "Meio-Elfo",
+    "halfling": "Halfling",
+    "halforc": "Meio-Orc",
+    "tiefling": "Tiefling",
+    "gnome": "Gnomo"
 };
+
+const objconvRace = {
+    "elf": "Elfo",
+    "human": "Humano",
+    "dwarf": "Anao",
+    "dragonborn": "Draconato",
+    "halfelf": "MeioElfo",
+    "halfling": "Halfling",
+    "halforc": "MeioOrc",
+    "tiefling": "Tiefling",
+    "gnome": "Gnomo"
+};
+
 const classes = ["Bárbaro", "Bardo", "Bruxo", "Clérigo", "Druida", "Feiticeiro", "Guerreiro", "Ladino", "Mago", "Monge", "Paladino", "Ranger"];
 
 class Person {
@@ -16,7 +36,7 @@ class Person {
     setName(newName) {
         newName = newName.trim()
         if (newName === ''){
-            throw 'New name cannot be empty'
+            throw 'Novo nome não pode estar vazio!';
         }
         this.name = newName
     }
@@ -47,28 +67,28 @@ function getRdm(obj) {
 }
 
 function genName(race, gender) {
-let nomeAnaoM = ["Adrik", "Alberich", "Baern", "Bruenor", "Eberk", "Flint", "Harbek", "Morgran", "Rangrim", "Thoradin", "Thorin", "Travok", "Ulfgar"];
-let nomeAnaoF = ["Amber", "Artin", "Bardryn", "Eldeth", "Gurdis", "Helja", "Kathra", "Ilde", "Riswynn", "Torbera", "Torgga", "Vistra"];
-let sobrenomeAnao = ["Balderk", "Battlehammer", "Dankil", "Fireforge", "Frostbeard", "Ironfist", "Leutgehr", "Rummaheim", "Ungart"];
+    let nomeAnaoM = ["Adrik", "Alberich", "Baern", "Bruenor", "Eberk", "Flint", "Harbek", "Morgran", "Rangrim", "Thoradin", "Thorin", "Travok", "Ulfgar"];
+    let nomeAnaoF = ["Amber", "Artin", "Bardryn", "Eldeth", "Gurdis", "Helja", "Kathra", "Ilde", "Riswynn", "Torbera", "Torgga", "Vistra"];
+    let sobrenomeAnao = ["Balderk", "Battlehammer", "Dankil", "Fireforge", "Frostbeard", "Ironfist", "Leutgehr", "Rummaheim", "Ungart"];
 
-let nomeElfoM = ["Adran", "Aramil", "Berrian", "Enialis", "Erevan", "Immeral", "Ivelios", "Laucian", "Paelias", "Peren", "Quarion", "Soveliss", "Varis"];
-let nomeElfoF = ["Adrie", "Antinus", "Birel", "Caelyn", "Enna", "Ielenia", "Leshanna", "Meriele", "Mialee", "Sariel", "Thia", "Vadania", "Valanthe"];
-let sobrenomeElfo = ["Amakir", "Amastacia", "Galanodel", "Holimion", "Liadon", "Nailo", "Siannodel"];
+    let nomeElfoM = ["Adran", "Aramil", "Berrian", "Enialis", "Erevan", "Immeral", "Ivelios", "Laucian", "Paelias", "Peren", "Quarion", "Soveliss", "Varis"];
+    let nomeElfoF = ["Adrie", "Antinus", "Birel", "Caelyn", "Enna", "Ielenia", "Leshanna", "Meriele", "Mialee", "Sariel", "Thia", "Vadania", "Valanthe"];
+    let sobrenomeElfo = ["Amakir", "Amastacia", "Galanodel", "Holimion", "Liadon", "Nailo", "Siannodel"];
 
-let nomeHumanoM;
-let nomeHumanoF;
-let sobrenomeHumano;
+    let nomeHumanoM = ["Darvin", "Dorn", "Evendur", "Gorstag", "Grim", "Helm", "Igan", "Ivor", "Kosef", "Malark", "Morn", "Randal", "Stedd"];
+    let nomeHumanoF = ["Arveene", "Esvele", "Jhessail", "Katernin", "Kerri", "Lureene", "Miri", "Mara", "Natali", "Rowan", "Shandri", "Tessele"];
+    let sobrenomeHumano = ["Amblecrown", "Bersk", "Buckman", "Chernin", "Chernin","Dundragon", "Evenwood", "Greycastle", "Kulenov", "Tallstag"];
 
-if(race == "dwarf"){
-    nameP = gender == "male" ? getRdm(nomeAnaoM) : getRdm(nomeAnaoF);
-    surname = getRdm(sobrenomeAnao);
+    let nomeMeioElfoM = ['Aelar', 'Bastian', 'Caelen', 'Dorian', 'Erevan', 'Faelar', 'Galen', 'Haelen', 'Ilian', 'Jareth', 'Kaelan', 'Lorian', 'Maelis'];
+    let nomeMeioElfoF = ['Elara', 'Aria', 'Lirael', 'Faela', 'Thalia', 'Elysia', 'Mira', 'Lyra', 'Seraphina', 'Evelina', 'Althea', 'Nerissa', 'Elowen'];
+    let sobrenomeMeioElfo = ["Moonshadow", "Silverbrook", "Duskrunner", "Starfrost", "Stormdancer", "Gloomweaver", "Sunsong", "Evebane"];
+
+    let raceP = objconvRace[race];
+    let paramP = gender == "male" ? `nome${raceP}M` : `nome${raceP}F`;
+    let nameP = getRdm(eval(paramP));
+    let surname = getRdm(eval(`sobrenome${raceP}`));
+
     return nameP + " " + surname;
-}
-if(race == "elf"){
-    nameP = gender == "male" ? getRdm(nomeElfoM) : getRdm(nomeElfoF);
-    surname = getRdm(sobrenomeElfo);
-    return nameP + " " + surname;
-}
 }
 
 function genClass() {
@@ -135,3 +155,39 @@ function* genRdn() {
         yield index++
     }
 }
+
+function rollDice(qtd, size) {
+    function roll(){
+        let v = Math.ceil(size * Math.random());
+        return v;
+    }
+    res = [];
+    for(i=1;i<=qtd;i++){
+        val = roll()
+        // console.log('dado '+i+' =', val);
+        res.push(val)
+    }
+    res.sort().shift();
+    return res.reduce((a,b)=>a+b);
+}
+
+function generateAttr() {
+    arrVals = [];
+    val1 = rollDice(4,6);
+    val2 = rollDice(4,6);
+    val3 = rollDice(4,6);
+    val4 = rollDice(4,6);
+    val5 = rollDice(4,6);
+    val6 = rollDice(4,6);
+
+    arrVals.push(val1,val2,val3,val4,val5,val6);
+    return arrVals.sort();
+}
+
+function raceAdjust(raceN, values) {
+    if(raceN == 'human'){
+        newVals = values.map(x=>x+1);
+        return newVals;
+    }
+}
+

@@ -4,7 +4,7 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 const pwd = 'g00gl3';
 
 async function connect() {
-    
+
     let conn;
 
     try {
