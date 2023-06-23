@@ -18,7 +18,7 @@
 </head>
 <body>
     <div class="container my-5 p-3 rounded" id="main">
-        <div class="row my-4">
+        <!-- <div class="row my-4">
             <div class="col d-flex justify-content-center">
                 <select class="form-select w-50" id="race">
                     <option value="0">Raça</option>
@@ -40,7 +40,7 @@
                     <option value="female">Mulher</option>
                 </select>
             </div>
-        </div>
+        </div> -->
         <div class="row my-4">
             <div class="col d-flex justify-content-center">
                 <button type="button" class="btn btn-secondary" id="btnGera">Gerar</button>
@@ -56,12 +56,13 @@
             $("#person").html("")
             $("#person").css("color", "#FFF")
 
-            let gen = genRdn()
-            let result = gen.next().value
-
-            let gender = $("#gender").val()
-            let race = $("#race").val()
+            // let gender = $("#gender").val()
+            // let race = $("#race").val()
+            let gender = getRdm(genders);
+            let race = getRdm(racesVal);
             let person = Person.createAnonymous(race, gender)
+
+            let genderIcon = gender == "male" ? "<i class='fa-solid fa-mars'></i>" : "<i class='fa-solid fa-venus'></i>";
 
             let html =
             "<div class='row my-4'>" +
@@ -69,7 +70,7 @@
                     "<span class='h4'>Nome: </span><span> "+person.name+"</span>" +
                 "</div>" +
                 "<div class='col'>" +
-                    "<span class='h4'>Raça: </span><span> "+person.race+"</span>" +
+                    "<span class='h4'>Raça: </span><span> "+person.race+"  "+genderIcon+"</span>" +
                 "</div>" +
                 "<div class='col'>" +
                     "<span class='h4'>Classe: </span><span> "+person.classN+"</span>" +
@@ -90,31 +91,6 @@
                 $("#gender").attr("disabled", true);
             }
         });
-
-        $("#gender")
-
-        // setInterval( () => {
-        //     $("#btnGera").css({
-        //         "background-image": "linear-gradient(to top right, "+rdmColor()+", "+rdmColor()+", "+rdmColor()+", "+rdmColor()+", "+rdmColor()+", "+rdmColor()+")",
-        //         "box-shadow": "1px 1px 30px "+rdmColor()+"",
-        //         "transition": "2s"
-        //     })
-        // }, 1000);
-
-        setInterval( () => {
-            // $("#btnGera").css({
-            //     "box-shadow": "inset 2px 2px 30px "+rdmColor()+"",
-            //     "transition": "1s"
-            // })
-            $("#gender").css({
-                "box-shadow": "inset 2px 2px 30px "+rdmColor()+"",
-                "transition": "1s"
-            })
-            $("#race").css({
-                "box-shadow": "inset 2px 2px 30px "+rdmColor()+"",
-                "transition": "1s"
-            })
-        }, 1000);
 
     </script>
 </body>
